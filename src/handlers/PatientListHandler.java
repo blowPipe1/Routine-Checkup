@@ -31,7 +31,7 @@ public class PatientListHandler implements HttpHandler {
         } else if ("POST".equals(exchange.getRequestMethod())) {
             handlePostDelete(exchange);
         } else {
-            exchange.sendResponseHeaders(404, -1);
+            exchange.sendResponseHeaders(HttpURLConnection.HTTP_NOT_FOUND, -1);
         }
     }
 
@@ -46,7 +46,7 @@ public class PatientListHandler implements HttpHandler {
         dataModel.put("selectedDay", selectedDate);
 
         exchange.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
-        exchange.sendResponseHeaders(200, 0);
+        exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
         try (OutputStream os = exchange.getResponseBody()) {
             renderer.render("patient_list.ftlh", dataModel, os);
         } catch (TemplateException e) {
@@ -71,11 +71,11 @@ public class PatientListHandler implements HttpHandler {
                 return;
 
             } catch (DateTimeParseException e) {
-                exchange.sendResponseHeaders(400, -1);
+                exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, -1);
                 return;
             }
         }
-        exchange.sendResponseHeaders(400, -1);
+        exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, -1);
     }
 
     private Optional<LocalDate> extractDateFromQuery(URI uri) {
