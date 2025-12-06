@@ -36,4 +36,12 @@ public class PatientStore {
                 .flatMap(entry -> entry.getValue().stream())
                 .count();
     }
+
+    public static boolean deletePatient(LocalDate date, String patientId) {
+        List<Patient> patients = store.get(date);
+        if (patients == null) {
+            return false;
+        }
+        return patients.removeIf(p -> p.getId().equals(patientId));
+    }
 }

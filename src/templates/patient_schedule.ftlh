@@ -63,7 +63,7 @@
     <#list 1..currentMonth.lengthOfMonth() as dayNum>
         <#assign date = currentMonth.atDay(dayNum)>
 
-        <a href="#"
+        <a href="/patients?date=${date}"
            class="day <#if date == today>today</#if>
                       <#if dailyCounts[date]??>has-patients</#if>">
 
