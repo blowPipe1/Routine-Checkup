@@ -44,4 +44,8 @@ public class PatientStore {
         }
         return patients.removeIf(p -> p.getId().equals(patientId));
     }
+
+    public static void addPatient(LocalDate date, Patient patient) {
+        store.computeIfAbsent(date, k -> new ArrayList<>()).add(patient);
+    }
 }

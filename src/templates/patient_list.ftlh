@@ -13,7 +13,7 @@
 <h1>список пациентов на ${selectedDay}</h1>
 <p>общее кол-во пациентов: ${patients?size}</p>
 
-<a href="#">записать нового пациента</a> |
+<a href="/add?date=${selectedDay}">записать нового пациента</a> |
 <a href="/calendar">вернуться в календарь</a>
 
 <table>

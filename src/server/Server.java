@@ -1,5 +1,6 @@
 package server;
 import com.sun.net.httpserver.HttpServer;
+import handlers.AddPatientHandler;
 import handlers.PatientListHandler;
 import handlers.ScheduleHandler;
 import utils.TemplateRenderer;
@@ -16,6 +17,7 @@ public class Server {
 
         server.createContext("/", new ScheduleHandler(renderer));
         server.createContext("/patients", new PatientListHandler(renderer));
+        server.createContext("/add", new AddPatientHandler(renderer));
 
         server.setExecutor(null);
         server.start();
